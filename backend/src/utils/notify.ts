@@ -1,8 +1,16 @@
 import nodemailer from "nodemailer";
 import Africastalking from "africastalking";
 
+interface ServiceRequestData {
+  name: string;
+  email: string;
+  phone: string;
+  service: string;
+  description?: string;
+}
+
 // --------- EMAIL NOTIFICATION ---------
-export const sendEmailNotification = async (request: any) => {
+export const sendEmailNotification = async (request: ServiceRequestData) => {
   try {
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -13,8 +21,8 @@ export const sendEmailNotification = async (request: any) => {
     });
 
     const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.NOTIFY_EMAIL,
+      from: process.env.EMAIL_USER!,
+      to: process.env.NOTIFY_EMAIL!,
       subject: `New Service Request from ${request.name}`,
       text: `
         Name: ${request.name}
@@ -33,16 +41,17 @@ export const sendEmailNotification = async (request: any) => {
 };
 
 // --------- SMS NOTIFICATION ---------
-export const sendSmsNotification = async (request: any) => {
+export const sendSmsNotification = async (request: ServiceRequestData) => {
   try {
     const africastalking = Africastalking({
-      apiKey: process.env.AT_API_KEY,
-      username: process.env.AT_USERNAME,
+      apiKey: process.env.AT_API_KEY!,
+      username: process.env.AT_USERNAME!,
     });
 
     const sms = africastalking.SMS;
 
     const response = await sms.send({
+      from: process.env.AT_SENDER_ID || "CYBER",
       to: [process.env.NOTIFY_PHONE || ""],
       message: `New Service Request:\n${request.name}\n${request.phone}\n${request.service}`,
     });

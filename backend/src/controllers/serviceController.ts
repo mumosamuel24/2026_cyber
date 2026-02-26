@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { sendEmailNotification, sendSmsNotification } from "./utils/notify";
 import ServiceRequest from "../models/ServiceRequest";
 
 // ------------------ CREATE SERVICE REQUEST ------------------
