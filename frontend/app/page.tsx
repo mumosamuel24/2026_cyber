@@ -30,6 +30,12 @@ export default function Home() {
             >
               Request a Service
             </Link>
+            <Link
+              href="/request"
+              className="bg-green-500 px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition"
+            >
+              Call/Whatsapp +25412643156 Email smumo4751@gmail.com
+            </Link>
           </div>
         </div>
       </section>
@@ -44,7 +50,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white shadow-md p-6 rounded-xl">
               <h3 className="text-xl font-semibold mb-3">
-                Fast & Reliable Service
+                Fast & Reliable Service 
               </h3>
               <p className="text-gray-600">
                 Quick turnaround times for cyber café services, IT support,
